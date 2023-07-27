@@ -7,6 +7,15 @@ import shell
 
 -->
 
+# micropython
+micropython files
+
+To start: 
+
+import shell
+
+-->
+
  0 lsr(path="/"):# Lists files recursive
  1 ls(path="/"):# Lists files
  2 cd(path="."):# Change directory
