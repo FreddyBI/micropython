@@ -1,18 +1,8 @@
 # micropython
 micropython files
 
-To start: 
-
-import shell
-
--->
-
-# micropython
-micropython files
-
-To start: 
-
-import shell
+shell.py
+To start: import shell
 
 -->
 
