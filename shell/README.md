@@ -1,44 +1,52 @@
 
-shell.py
+shell.py Is a mini shell for all micropython boards. Tool to use with REPL.
 
-Is a mini shell for all micropython boards.
-Tool to use with REPL.
+You can add funtions to this file: syntax: def functioname (parameters):# description 
 
 To start: import shell
--->
 
- 0 lsr(path="/"):# Lists files recursive
- 
- 1 ls(path="/"):# Lists files
- 
- 2 cd(path="."):# Change directory
- 
- 3 cat(f,find=""):# Display file contents
- 
- 4 mkdir(target=""):# Create a directory
- 
- 5 pwd():# Display full pathname of the current working
- 
- 6 rm(f):# Remove a file
- 
- 7 run(f):# Run micropython code from file
- 
- 8 sys_info():# Display machine info
- 
-c execute micropython command
+shell commands:
 
-e ed()
+Lists files recursive
+ 
+Lists files
+ 
+Change directory
+ 
+Display file contents
+ 
+Create a directory
+ 
+Display full pathname of the current working
+ 
+Remove a file
+ 
+Run micropython code from file
+ 
+Display machine info
+ 
+Execute micropython command
 
-h help()
+Text editor 
 
-lm print(dir()) # Loaded modules
+Help
 
-m help('modules')
+Print Loaded modules
 
-q quit
+Print help modules
 
-r from machine import reset;reset()
+Quit
 
-sd import uos;print(uos.listdir("/sd"))
+Reset machine
 
-Action? 
+list sd files
+
+Action?
+
+e editor ed():
+
+0-Open 1-Print 2-Edit 3-Remove 4-Save 5-Exit 6-New 7-add 8-Insert 9-Search
+
+Enter command: 
+
+
