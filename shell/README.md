@@ -5,7 +5,6 @@ Is a mini shell for all micropython boards.
 Tool to use with REPL.
 
 To start: import shell
-
 -->
 
  0 lsr(path="/"):# Lists files recursive
