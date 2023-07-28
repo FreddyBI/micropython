@@ -1,5 +1,3 @@
-# micropython
-micropython files
 
 shell.py
 
