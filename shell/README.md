@@ -1,5 +1,5 @@
 
-shell.py Is a mini shell for all micropython boards. Tool to use with REPL.
+shell.py Mini shell for all micropython boards to use with REPL.
 
 You can add funtions to this file: syntax: def functioname (parameters):# description 
 
