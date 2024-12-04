@@ -15,3 +15,6 @@ def loopshuffle(start, stop=None, step=None): # continue loop shuffel numbers
       i=l[0]  
       yield i
       l.append(l.pop(0))
+      
+def roundint(f) : # round float to int
+  return int(f+0.5) if f > 0.0 else int(f-0.5)
