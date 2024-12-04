@@ -1,5 +1,5 @@
-
-from fbi import roundint,randint,loopshuffle
+from random import randint
+from fbi import roundint,loopshuffle
 from point3Dfbi import Point3D as P
 from math import cos,sin,pi
 from machine import Pin,I2C,SoftI2C
