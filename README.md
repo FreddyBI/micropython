@@ -7,7 +7,6 @@ https://youtube.com/shorts/H7oSitX_lcQ?si=40QM6LOnt6kxlW-y
 
 ![Video on youtube:](https://youtube.com/shorts/H7oSitX_lcQ?si=40QM6LOnt6kxlW-y)
 
-[![Video on youtube](https://img.youtube.com/si/40QM6LOnt6kxlW-y/0.jpg)](https://www.youtube.com/watch?si=40QM6LOnt6kxlW-y)
 
 
 shell: is een mini-shell voor alle micropython-boards. Tool om te gebruiken met REPL.
