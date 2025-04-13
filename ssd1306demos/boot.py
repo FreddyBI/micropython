@@ -1,13 +1,3 @@
-# This file is executed on every boot (including wake-boot from deepsleep)
-#import esp
-#esp.osdebug(None)
-#import webrepl
-#webrepl.start()
-# This file is executed on every boot (including wake-boot from deepsleep)
-#import esp
-#esp.osdebug(None)
-#import webrepl
-#webrepl.start()
 from machine import Pin,I2C,SoftI2C,freq
 from ssd1306fbi import SSD1306_I2C
 from os import mount,listdir,umount
