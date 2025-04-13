@@ -1,5 +1,6 @@
-import utime
-import uos
+from time import localtime
+import os
+import sys
 
 E='  Error'
 
@@ -162,13 +163,13 @@ def ed():
 
 def get_mode(f=""):
     try:
-        return uos.stat(f)[0]
+        return os.stat(f)[0]
     except OSError:
         return 0
 
 def get_stat(f=""):
     try:
-        return uos.stat(f)
+        return os.stat(f)
     except OSError:
         return (0,) * 10
 
@@ -183,15 +184,15 @@ def mode_isfile(mode):
 
 def tree(path="/",subdir=True,count=-1,getfilenr=-1): # Lists files recursive or get filename
   try:   
-    for data in uos.ilistdir(path):
+    for data in os.ilistdir(path):
       name=data[0]
       count+=1
       if path != '/':
         fn = path + '/' + name
       else:
         fn = path + name
-      stat = uos.stat(fn)
-      mtime = utime.localtime(stat[8])
+      stat = os.stat(fn)
+      mtime = localtime(stat[8])
       if data[1] is 0x4000:
         directory="(directory)"
         size=0
@@ -200,15 +201,15 @@ def tree(path="/",subdir=True,count=-1,getfilenr=-1): # Lists files recursive or
         directory=""
         size = stat[6]
       if getfilenr is -1:  
-        print('[{:3d}] {:6d} {:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d} {} {}'.format(
-        count,size,mtime[0],mtime[1],mtime[2],mtime[3],mtime[4],mtime[5],fn,directory))
+        print('[{:3d}] \t{:6} {:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d} {} {}'.format(
+        count,size if directory is "" else "" ,mtime[0],mtime[1],mtime[2],mtime[3],mtime[4],mtime[5],fn,directory))
       if directory is "(directory)" and subdir:
         count=tree(fn,count=count,getfilenr=getfilenr)
         if type(count) != int : return count
     return count  
         
-  except:
-    print(E)
+  except Exception as E:
+    print(sys.print_exception(E))
     
 def lsr(path="/"):# Lists files recursive
   r=tree(path)
@@ -219,18 +220,18 @@ def ls(path="/"):# Lists files
   return ""
     
 def cd(path="."):# Change directory
-  try:   
-    uos.chdir(path)
-  except:
-    print(E)
+  try:
+    os.chdir(path)
+  except Exception as E:
+    print(sys.print_exception(E))
   return ""  
 
 def cat(f,find=""):# Display file contents
   try:
     for line in open(f):
       if find in line: print(line, end='')
-  except:
-    print(E)
+  except Exception as E:
+    print(sys.print_exception(E))
   return ""  
    
 def mkdir(target=""):# Create a directory
@@ -238,21 +239,21 @@ def mkdir(target=""):# Create a directory
   if target is "":
     print("Missing target directory")  
   elif not mode_exists(mode):
-    uos.mkdir(target)
+    os.mkdir(target)
   else:
     print('%s already exists.' % target)
   return ""  
 
 def pwd():# Display full pathname of the current working
-  print(uos.getcwd())
+  print(os.getcwd())
   return ""
 
 def rm(f):# Remove a file
   try:
-    uos.remove(f)
+    os.remove(f)
   except:
     try:
-      uos.rmdir(f)
+      os.rmdir(f)
     except:
       print('%s is not a file or directory.' % f)
   return ""    
@@ -272,7 +273,7 @@ def getfunctionsrecords(fileobj):
   fileobj.close()    
 
 def sys_info():# Display machine info
-  from uos import uname,statvfs
+  from os import uname,statvfs
   from gc import collect
   from machine import freq
   from micropython import mem_info
@@ -320,8 +321,8 @@ def shell():
          s=input("Press enter to continue.")
       except KeyboardInterrupt:
         return -1
-      except:
-        print(E) 
+      except Exception as E:
+        print(sys.print_exception(E))
       return 1
     else:
       c=ex[s]
@@ -329,8 +330,8 @@ def shell():
         c=input("\nCommand? ")  
       try:  
         exec(c)
-      except:
-        print(E)
+      except Exception as E:
+        print(sys.print_exception(E))
     if not s is '':    
       s=input("Press enter to continue.")
   except KeyboardInterrupt:
@@ -346,18 +347,16 @@ ex={"":"",
       "m":"help('modules')",
       "lm":'print(dir()) # Loaded modules',
       "r":'from machine import reset;reset()',
-      "sd":'import uos;print(uos.listdir("/sd"))', 
+      "sd":'import os;print(os.listdir("/sd"))', 
       "c":'execute micropython command', 
       "q":"quit"
       }
 
 def sh():
-  for i, f in enumerate(getfunctionsrecords(open('shell.py'))):
+  for i, f in enumerate(getfunctionsrecords(open('shellfbi.py'))):
     ex['{:2d}'.format(i)]=f
   while True:
     if shell() is -1: break
-    
+
 sh()
-
-
 
